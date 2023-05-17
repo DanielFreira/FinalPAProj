@@ -1,5 +1,5 @@
 import cutejason.classes.*
-
+import cutejason.visitor.SearchByKeyVisitor
 
 
 fun main(args: Array<String>) {
@@ -42,7 +42,12 @@ fun main(args: Array<String>) {
         ))
     ))
 
-    println(testJasonObj.generateJson())
+    //println(testJasonObj.generateJson())
+
+    val searchByKeyVisitor = SearchByKeyVisitor("numero")
+    testJasonObj.accept(searchByKeyVisitor)
+
+    println(searchByKeyVisitor.getValues())
 
 
 

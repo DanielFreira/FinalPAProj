@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Reorganized project structure">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/Visitor.kt" afterDir="false" />
+    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Implemented Visitor design pattern (TODO Class implementations)">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/SearchByKeyVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/Visitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/Visitor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684311930701</updated>
-      <workItem from="1684311932120" duration="13732000" />
+      <workItem from="1684311932120" duration="19552000" />
     </task>
     <task id="LOCAL-00001" summary="Basic class structure for json objects created">
       <created>1684314730688</created>
@@ -107,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684330957727</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implemented Visitor design pattern (TODO Class implementations)">
+      <created>1684336582323</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684336582323</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +136,7 @@
     <MESSAGE value="Json serialization added trough generateJson method" />
     <MESSAGE value="Added tests to check the generateJson methods" />
     <MESSAGE value="Reorganized project structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reorganized project structure" />
+    <MESSAGE value="Implemented Visitor design pattern (TODO Class implementations)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Visitor design pattern (TODO Class implementations)" />
   </component>
 </project>

@@ -1,4 +1,5 @@
 import cutejason.classes.*
+import netscape.javascript.JSObject
 
 interface Visitor {
 
