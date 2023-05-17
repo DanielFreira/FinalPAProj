@@ -1,4 +1,4 @@
-import cutejason.*
+import cutejason.classes.*
 
 fun main(args: Array<String>) {
 

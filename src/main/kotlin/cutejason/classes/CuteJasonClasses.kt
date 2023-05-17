@@ -1,4 +1,4 @@
-package cutejason
+package cutejason.classes
 
 // Base object type
 sealed class CuteJasonVal {
