@@ -1,5 +1,7 @@
 import cutejason.classes.*
 
+
+
 fun main(args: Array<String>) {
 
     val testJasonObj = CuteJasonObj(mapOf(
@@ -41,6 +43,7 @@ fun main(args: Array<String>) {
     ))
 
     println(testJasonObj.generateJson())
-    println(testJasonObj2.generateJson())
+
+
 
 }
