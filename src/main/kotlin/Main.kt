@@ -1,6 +1,18 @@
 import cutejason.classes.*
+import cutejason.classes.CuteJasonConverter.toCuteJason
 import cutejason.visitor.SearchByKeyVisitor
 
+data class Enrolled(
+    val numero: Int,
+    val nome: String,
+    val internacional: Boolean
+)
+data class Course(
+    val uc: String,
+    val ects: Double,
+    val dataexame: String?,
+    val inscritos: List<Enrolled>?
+)
 
 fun main(args: Array<String>) {
 
@@ -44,10 +56,25 @@ fun main(args: Array<String>) {
 
     //println(testJasonObj.generateJson())
 
-    val searchByKeyVisitor = SearchByKeyVisitor("numero")
-    testJasonObj.accept(searchByKeyVisitor)
+    //val searchByKeyVisitor = SearchByKeyVisitor("numero")
+    //testJasonObj.accept(searchByKeyVisitor)
 
-    println(searchByKeyVisitor.getValues())
+    //println(searchByKeyVisitor.getValues())
+
+    val myCourse = Course(
+        "PA",
+        6.0,
+        null,
+        listOf(
+            Enrolled(101101,"Dave Farley", true),
+            Enrolled(101102, "Martin Fowler", true),
+            Enrolled(26503, "André Santos",false)
+        )
+    )
+
+
+
+    val myCuteJasonObj = myCourse.toCuteJason()
 
 
 
