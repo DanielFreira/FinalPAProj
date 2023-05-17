@@ -25,7 +25,13 @@ fun main(args: Array<String>) {
         ))
     ))
 
+    val testJasonObj2 = CuteJasonList(listOf(
+        CuteJasonStr("hello"),
+        CuteJasonNum(123.0),
+        CuteJasonBool(true)
+    ))
 
-    print(testJasonObj)
+    println(testJasonObj.generateJson())
+    println(testJasonObj2.generateJson())
 
 }
