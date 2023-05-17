@@ -26,9 +26,18 @@ fun main(args: Array<String>) {
     ))
 
     val testJasonObj2 = CuteJasonList(listOf(
-        CuteJasonStr("hello"),
-        CuteJasonNum(123.0),
-        CuteJasonBool(true)
+        CuteJasonObj(mapOf(
+            "keyString1" to CuteJasonStr("value"),
+            "keyNumeric1" to CuteJasonNum(123456.0),
+            "keyBoolean1" to CuteJasonBool(true),
+            "keyNull1" to CuteJasonNull
+        )),
+        CuteJasonObj(mapOf(
+            "keyString2" to CuteJasonStr("value2"),
+            "keyNumeric2" to CuteJasonNum(654321.0),
+            "keyBoolean2" to CuteJasonBool(false),
+            "keyNull2" to CuteJasonNull
+        ))
     ))
 
     println(testJasonObj.generateJson())

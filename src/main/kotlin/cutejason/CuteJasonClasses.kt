@@ -2,6 +2,7 @@ package cutejason
 
 // Base object type
 sealed class CuteJasonVal {
+    //Method to serialize the CuteJson objects (aka json)
     abstract fun generateJson(): String
 }
 

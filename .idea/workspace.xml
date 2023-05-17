@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Basic class structure for json objects created">
+    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Json serialization added trough generateJson method">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/CuteJasonTests.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalPAProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalPAProj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/CuteJasonClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/CuteJasonClasses.kt" afterDir="false" />
     </list>
@@ -36,6 +39,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -44,6 +51,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
@@ -56,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684311930701</updated>
-      <workItem from="1684311932120" duration="6284000" />
+      <workItem from="1684311932120" duration="10521000" />
     </task>
     <task id="LOCAL-00001" summary="Basic class structure for json objects created">
       <created>1684314730688</created>
@@ -72,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684314922299</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Json serialization added trough generateJson method">
+      <created>1684320077148</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684320077148</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +108,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Basic class structure for json objects created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic class structure for json objects created" />
+    <MESSAGE value="Json serialization added trough generateJson method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Json serialization added trough generateJson method" />
   </component>
 </project>
