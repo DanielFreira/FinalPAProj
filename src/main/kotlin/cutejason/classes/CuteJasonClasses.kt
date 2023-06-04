@@ -32,7 +32,7 @@ sealed class CuteJasonVal : Observable {
 }
 
 //Object that represents the json struct
-data class CuteJasonObj(val value: Map<String, CuteJasonVal>) : CuteJasonVal() {
+data class CuteJasonObj(val value: MutableMap<String, CuteJasonVal>) : CuteJasonVal(), MutableMap<String, CuteJasonVal> by value {
 
 
     //Builds Json representation of CuteJasonVal and this values and encapsulates all in bracers

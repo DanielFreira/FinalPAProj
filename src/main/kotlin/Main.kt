@@ -1,5 +1,9 @@
 import cutejason.classes.*
 import cutejason.classes.CuteJasonConverter.toCuteJason
+import cutejason.command.AddCommand
+import cutejason.command.AlterCommand
+import cutejason.command.Invoker
+import cutejason.command.RemoveCommand
 import cutejason.visitor.SearchByKeyVisitor
 
 data class Enrolled(
@@ -16,37 +20,39 @@ data class Course(
 
 fun main(args: Array<String>) {
 
-    val testJasonObj = CuteJasonObj(mapOf(
+    val testJasonObj = CuteJasonObj(
+        mutableMapOf(
         "uc" to CuteJasonStr("PA"),
         "ectcs" to CuteJasonNum(6.0),
         "data-exame" to CuteJasonNull,
         "inscritos" to CuteJasonList(listOf(
-            CuteJasonObj(mapOf(
+            CuteJasonObj(mutableMapOf(
                 "numero" to CuteJasonNum(101101.0),
                 "nome" to CuteJasonStr("Dave Farley"),
                 "internacional" to CuteJasonBool(true)
             )),
-            CuteJasonObj(mapOf(
+            CuteJasonObj(mutableMapOf(
                 "numero" to CuteJasonNum(101102.0),
                 "nome" to CuteJasonStr("Martin Fowler"),
                 "internacional" to CuteJasonBool(true)
             )),
-            CuteJasonObj(mapOf(
+            CuteJasonObj(mutableMapOf(
                 "numero" to CuteJasonNum(26503.0),
                 "nome" to CuteJasonStr("André Santos"),
                 "internacional" to CuteJasonBool(false)
             ))
         ))
-    ))
+    )
+    )
 
     val testJasonObj2 = CuteJasonList(listOf(
-        CuteJasonObj(mapOf(
+        CuteJasonObj(mutableMapOf(
             "keyString1" to CuteJasonStr("value"),
             "keyNumeric1" to CuteJasonNum(123456.0),
             "keyBoolean1" to CuteJasonBool(true),
             "keyNull1" to CuteJasonNull
         )),
-        CuteJasonObj(mapOf(
+        CuteJasonObj(mutableMapOf(
             "keyString2" to CuteJasonStr("value2"),
             "keyNumeric2" to CuteJasonNum(654321.0),
             "keyBoolean2" to CuteJasonBool(false),
@@ -59,7 +65,7 @@ fun main(args: Array<String>) {
     val searchByKeyVisitor = SearchByKeyVisitor("numero")
     testJasonObj.accept(searchByKeyVisitor)
 
-    println(searchByKeyVisitor.getValues())
+    //println(searchByKeyVisitor.getValues())
 
     val myCourse = Course(
         "PA",
@@ -76,8 +82,35 @@ fun main(args: Array<String>) {
 
     val myCuteJasonObj = myCourse.toCuteJason()
 
-    myCuteJasonObj.toCuteJason()
+    //myCuteJasonObj.toCuteJason()
     //println(myCuteJasonObj.generateJson())
+
+
+    val addCommand = AddCommand(testJasonObj, "test","testValue")
+    val removeCommand = RemoveCommand(testJasonObj, "numero")
+    val changeCommand = AlterCommand(testJasonObj, "ectcs",7.0)
+
+    val invoker = Invoker()
+
+    invoker.useCommand(addCommand)
+
+    println(testJasonObj.generateJson())
+
+    invoker.undoCommand()
+
+    invoker.useCommand(removeCommand)
+
+    println(testJasonObj.generateJson())
+
+    invoker.undoCommand()
+
+    invoker.useCommand(changeCommand)
+
+    println(testJasonObj.generateJson())
+
+    invoker.undoCommand()
+
+    println(testJasonObj.generateJson())
 
 
 
