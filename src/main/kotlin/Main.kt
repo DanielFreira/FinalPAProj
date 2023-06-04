@@ -56,10 +56,10 @@ fun main(args: Array<String>) {
 
     //println(testJasonObj.generateJson())
 
-    //val searchByKeyVisitor = SearchByKeyVisitor("numero")
-    //testJasonObj.accept(searchByKeyVisitor)
+    val searchByKeyVisitor = SearchByKeyVisitor("numero")
+    testJasonObj.accept(searchByKeyVisitor)
 
-    //println(searchByKeyVisitor.getValues())
+    println(searchByKeyVisitor.getValues())
 
     val myCourse = Course(
         "PA",
@@ -75,6 +75,9 @@ fun main(args: Array<String>) {
 
 
     val myCuteJasonObj = myCourse.toCuteJason()
+
+    myCuteJasonObj.toCuteJason()
+    //println(myCuteJasonObj.generateJson())
 
 
 

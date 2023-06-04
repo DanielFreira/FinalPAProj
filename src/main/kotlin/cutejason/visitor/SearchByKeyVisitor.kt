@@ -16,15 +16,10 @@ class SearchByKeyVisitor(val keyToSearch: String) : Visitor {
             valuesOfSearchedKey
         }
     }
-    override fun visit(cuteJasonObj: CuteJasonObj) {
+    override fun visit(cuteJasonObj: CuteJasonObj): Boolean {
         //
         cuteJasonObj.value[keyToSearch]?.let { valuesOfSearchedKey.add(it) }
-
-        //redirects visitor to the objects of the CuteJasonObj
-        for ((key, value) in cuteJasonObj.value){
-            value.accept(this)
-        }
-
+        return true
     }
 
     override fun visit(cuteJasonStr: CuteJasonStr) {}
@@ -36,11 +31,9 @@ class SearchByKeyVisitor(val keyToSearch: String) : Visitor {
     override fun visit(cuteJasonNull: CuteJasonNull) {}
 
 
-    override fun visit(cuteJasonList: CuteJasonList) {
+    override fun visit(cuteJasonList: CuteJasonList): Boolean {
         //redirects visitor to the objects of the list
-        for(value in cuteJasonList.value){
-            value.accept(this)
-        }
+        return true
     }
 
 }

@@ -1,11 +1,7 @@
 package cutejason.classes
 
-import cutejason.classes.*
-import java.util.SimpleTimeZone
-import kotlin.reflect.KProperty
-import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.jvm.isAccessible
+
 
 
 object CuteJasonConverter {
@@ -18,7 +14,7 @@ object CuteJasonConverter {
             is Enum<*> -> CuteJasonStr(this.name)
             is Boolean -> CuteJasonBool(this)
             is String -> CuteJasonStr(this)
-            is Number -> CuteJasonNum(this.toDouble())
+            is Number -> CuteJasonNum(this)
             null -> CuteJasonNull
             else -> this.toCuteJasonObj()
 
@@ -26,14 +22,14 @@ object CuteJasonConverter {
 
     private fun Any.toCuteJasonObj() : CuteJasonObj {
 
-        val map = mutableMapOf<String, CuteJasonVal>()
+        val propertyMap = mutableMapOf<String, CuteJasonVal>()
         this::class.declaredMemberProperties
             .forEach { property ->
                 val value = property.call(this)
                 val key = property.name
-                map[key] = value?.toCuteJason() ?: CuteJasonNull
+                propertyMap[key] = value?.toCuteJason() ?: CuteJasonNull
             }
-        return CuteJasonObj(map)
+        return CuteJasonObj(propertyMap)
     }
 
 
