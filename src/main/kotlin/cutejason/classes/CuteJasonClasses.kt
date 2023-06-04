@@ -1,19 +1,41 @@
 package cutejason.classes
 
 import Visitor
+import cutejason.observer.Observable
+import cutejason.observer.Observer
 
 // Base object type
-sealed class CuteJasonVal {
+sealed class CuteJasonVal : Observable {
+
+    //lost of observers
+    private val observers: MutableList<Observer> = mutableListOf()
 
     //Method to serialize the CuteJson objects (aka json)
     abstract fun generateJson(): String
 
     abstract fun accept(visitor: Visitor)
+
+    //Adds new observer to the list observers
+    override fun addObserver(observer: Observer) {
+        observers.add(observer)
+    }
+    //Removes observer from observers list
+    override fun removeObserver(observer: Observer) {
+        observers.remove(observer)
+    }
+    //Updates every observer in observers list
+    override fun updateObservers() {
+        observers.forEach { it.update() }
+    }
+
+
 }
 
 //Object that represents the json struct
 data class CuteJasonObj(val value: Map<String, CuteJasonVal>) : CuteJasonVal() {
-    //Builds Json representation of CuteJasonVal and tis values and encapsulates all in bracers
+
+
+    //Builds Json representation of CuteJasonVal and this values and encapsulates all in bracers
     override fun generateJson(): String {
         return value.map{ "\"${it.key}\" : ${it.value.generateJson()}" }.joinToString(
             prefix = "{",
@@ -22,11 +44,13 @@ data class CuteJasonObj(val value: Map<String, CuteJasonVal>) : CuteJasonVal() {
         )
     }
 
+    //Accepts visitor obj
     override fun accept(visitor: Visitor) {
         if (visitor.visit(this)){
             value.values.forEach{it.accept(visitor)}
         }
     }
+
 }
 //String type object for json struct
 data class CuteJasonStr(val value: String) : CuteJasonVal() {
@@ -63,7 +87,7 @@ data class  CuteJasonBool(val value: Boolean) : CuteJasonVal() {
 }
 //List type object for json struct
 data class CuteJasonList(val value: List<CuteJasonVal>) : CuteJasonVal() {
-    //Builds a a string by calling each nested child generateJason method, then encapsulates all in square brackets
+    //Builds a string by calling each nested child generateJason method, then encapsulates all in square brackets
     override fun generateJson(): String {
         return value.joinToString(
             prefix = "[",
@@ -73,7 +97,7 @@ data class CuteJasonList(val value: List<CuteJasonVal>) : CuteJasonVal() {
         }
     }
 
-    //Guides vositor obj to each nested child
+    //Guides visitor obj to each nested child
     override fun accept(visitor: Visitor) {
         if (visitor.visit(this)) {
             value.forEach{it.accept(visitor)}

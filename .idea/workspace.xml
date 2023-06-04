@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Implemented Visitor design pattern (TODO Class implementations)">
+    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Transferred accept method for nested children to Obj class instead of visitor">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/observer/Observable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/observer/Observer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/SearchByKeyVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/SearchByKeyVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/Visitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/visitor/Visitor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +19,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Sealed Class" />
-        <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Object" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -62,6 +60,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projetos\Kotlin\FinalPAProj\src\main\kotlin" />
       <recent name="D:\Projetos\Kotlin\FinalPAProj\src\main\kotlin\cutejason\classes" />
     </key>
   </component>
@@ -74,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1684311930701</updated>
       <workItem from="1684311932120" duration="27687000" />
-      <workItem from="1685870686871" duration="2038000" />
+      <workItem from="1685870686871" duration="6180000" />
     </task>
     <task id="LOCAL-00001" summary="Basic class structure for json objects created">
       <created>1684314730688</created>
@@ -125,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684348512017</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Transferred accept method for nested children to Obj class instead of visitor">
+      <created>1685872906960</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685872906960</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +170,7 @@
     <MESSAGE value="Reorganized project structure" />
     <MESSAGE value="Implemented Visitor design pattern (TODO Class implementations)" />
     <MESSAGE value="Created Singleton object to instantiate from any model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Singleton object to instantiate from any model" />
+    <MESSAGE value="Transferred accept method for nested children to Obj class instead of visitor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transferred accept method for nested children to Obj class instead of visitor" />
   </component>
 </project>
