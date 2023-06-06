@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
     val testJasonObj = CuteJasonObj(
         mutableMapOf(
         "uc" to CuteJasonStr("PA"),
-        "ectcs" to CuteJasonNum(6.0),
+        "ects" to CuteJasonNum(6.0),
         "data-exame" to CuteJasonNull,
         "inscritos" to CuteJasonList(listOf(
             CuteJasonObj(mutableMapOf(
@@ -88,7 +88,7 @@ fun main(args: Array<String>) {
 
     val addCommand = AddCommand(testJasonObj, "test","testValue")
     val removeCommand = RemoveCommand(testJasonObj, "numero")
-    val changeCommand = AlterCommand(testJasonObj, "ectcs",7.0)
+    val changeCommand = AlterCommand(testJasonObj, "ects",7.0)
 
     val invoker = Invoker()
 

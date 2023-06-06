@@ -6,23 +6,24 @@ import cutejason.classes.CuteJasonVal
 class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val propertyName: String) : Command{
 
     private var used = false
-    private var removedPropertyValue: CuteJasonVal? = null
+    private var removedProperty: CuteJasonVal? = null
 
     override fun execute() {
         if (!used){
-            removedPropertyValue = cuteJasonObj.value.remove(propertyName)
+            removedProperty = cuteJasonObj.value.remove(propertyName)
             used = true
         }
     }
 
     override fun undo() {
         if (used) {
-            if (propertyName != null){
-                cuteJasonObj.value[propertyName] = removedPropertyValue!!
+            if (removedProperty != null){
+                cuteJasonObj.value[propertyName] = removedProperty!!
             }
             used = false
         }
     }
+
 
 
 }
