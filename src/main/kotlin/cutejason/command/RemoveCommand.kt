@@ -4,7 +4,7 @@ import cutejason.classes.CuteJasonList
 import cutejason.classes.CuteJasonObj
 import cutejason.classes.CuteJasonVal
 
-class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val propertyName: String, private val index: Int?) : Command{
+class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val propertyName: String, private val index: Int? = null) : Command{
 
     private var used = false
     private var removedProperty: CuteJasonVal? = null
@@ -39,11 +39,9 @@ class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val property
                 }
                 else{
                     if(cuteJasonObj.value[propertyName] is CuteJasonList){
-
                         var tempCuteJasonList: CuteJasonList = cuteJasonObj.value[propertyName] as CuteJasonList
                         tempCuteJasonList.value.add(index, removedListProperty!!)
                         cuteJasonObj.value[propertyName] = tempCuteJasonList
-
                     }
                 }
             }

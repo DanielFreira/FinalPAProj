@@ -1,10 +1,11 @@
 package cutejason.command
 
 import cutejason.classes.CuteJasonConverter.toCuteJason
+import cutejason.classes.CuteJasonList
 import cutejason.classes.CuteJasonObj
 import cutejason.classes.CuteJasonVal
 
-class AlterCommand(private val cuteJasonObj: CuteJasonObj, private val propertyName: String, private val newPropertyValue: Any) : Command {
+class AlterCommand(private val cuteJasonObj: CuteJasonObj, private val propertyName: String, private val newPropertyValue: Any, private val listPropertyName: String? = null, private val index: Int? = null) : Command {
 
     private var used = false
     private var previousPropertyValue: CuteJasonVal? = null
@@ -12,8 +13,19 @@ class AlterCommand(private val cuteJasonObj: CuteJasonObj, private val propertyN
 
     override fun execute() {
         if (!used) {
-            previousPropertyValue = cuteJasonObj.value[propertyName]
-            cuteJasonObj.value[propertyName] = convertedNewPropertyValue
+
+            if(index == null || listPropertyName == null) {
+                previousPropertyValue = cuteJasonObj.value[propertyName]
+                cuteJasonObj.value[propertyName] = convertedNewPropertyValue
+            }
+            else {
+                if(cuteJasonObj.value[listPropertyName] is CuteJasonList){
+                    var tempCuteJasonList: CuteJasonList = cuteJasonObj.value[listPropertyName] as CuteJasonList
+                    previousPropertyValue = tempCuteJasonList.value[index]
+                    tempCuteJasonList.value[index] = convertedNewPropertyValue
+                }
+            }
+
             used = true
         }
         cuteJasonObj.updateObservers()

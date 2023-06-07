@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
         "uc" to CuteJasonStr("PA"),
         "ects" to CuteJasonNum(6.0),
         "data-exame" to CuteJasonNull,
-        "inscritos" to CuteJasonList(listOf(
+        "inscritos" to CuteJasonList(mutableListOf(
             CuteJasonObj(mutableMapOf(
                 "numero" to CuteJasonNum(101101.0),
                 "nome" to CuteJasonStr("Dave Farley"),
@@ -43,11 +43,12 @@ fun main(args: Array<String>) {
                 "nome" to CuteJasonStr("André Santos"),
                 "internacional" to CuteJasonBool(false)
             ))
-        ))
+        )
+        )
     )
     )
 
-    val testJasonObj2 = CuteJasonList(listOf(
+    val testJasonObj2 = CuteJasonList(mutableListOf(
         CuteJasonObj(mutableMapOf(
             "keyString1" to CuteJasonStr("value"),
             "keyNumeric1" to CuteJasonNum(123456.0),
