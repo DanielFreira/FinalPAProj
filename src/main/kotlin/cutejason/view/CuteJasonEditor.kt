@@ -56,7 +56,7 @@ class CuteJasonEditor(private val controller: Controller, private val cuteJasonO
                 add(widget(it.key,it.value))
             }
 
-            // menu
+
             addMouseListener(object : MouseAdapter() {
                 override fun mouseClicked(e: MouseEvent) {
                     if (SwingUtilities.isRightMouseButton(e)) {
@@ -66,24 +66,38 @@ class CuteJasonEditor(private val controller: Controller, private val cuteJasonO
                         add.addActionListener {
                             val propertyName = JOptionPane.showInputDialog("Property name")
                             val propertyValue = JOptionPane.showInputDialog("Property value")
-                            controller.alterProperty(propertyName, propertyValue)
+                            controller.addProperty(propertyName, propertyValue)
                             menu.isVisible = false
                             revalidate()
-                            frame.repaint()
+                            repaint()
 
                         }
 
-                        val del = JButton("delete all")
-                        del.addActionListener {
+                        val delAll = JButton("delete all")
+                        delAll.addActionListener {
                             cuteJasonObj.value.keys.toList().forEach { propertyName ->
                                 controller.removeProperty(propertyName)
                             }
                             menu.isVisible = false
+                            panel().removeAll()
                             revalidate()
-                            frame.repaint()
+                            repaint()
+
                         }
+
+                        val undo = JButton("Undo")
+                        undo.addActionListener {
+                            controller.undo()
+                            menu.isVisible = false
+                            panel().removeAll()
+                            revalidate()
+                            repaint()
+                        }
+
+
                         menu.add(add)
-                        menu.add(del)
+                        menu.add(delAll)
+                        menu.add(undo)
                         menu.show(this@apply, 100, 100)
                     }
                 }
@@ -190,6 +204,7 @@ class CuteJasonEditor(private val controller: Controller, private val cuteJasonO
         if (observable == cuteJasonObj){
             SwingUtilities.invokeLater {
                 this.srcArea.text = cuteJasonObj.generateJson()
+
             }
         }
     }

@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Added &quot;remove from lists&quot; to RemoveCommand">
+    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Added &quot;remove from lists&quot; to Add and Alter Command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AlterCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AlterCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/view/CuteJasonEditor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/view/CuteJasonEditor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +94,7 @@
       <workItem from="1684311932120" duration="27687000" />
       <workItem from="1685870686871" duration="15403000" />
       <workItem from="1686063499995" duration="10443000" />
-      <workItem from="1686122293565" duration="17935000" />
+      <workItem from="1686122293565" duration="19478000" />
     </task>
     <task id="LOCAL-00001" summary="Basic class structure for json objects created">
       <created>1684314730688</created>
@@ -191,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686157932437</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added &quot;remove from lists&quot; to Add and Alter Command">
+      <created>1686161950019</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686161950019</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +239,7 @@
     <MESSAGE value="Removed Bug on removing non existing properties" />
     <MESSAGE value="MVC Arch implemented with Swing (Incomplete)" />
     <MESSAGE value="Added &quot;remove from lists&quot; to RemoveCommand" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;remove from lists&quot; to RemoveCommand" />
+    <MESSAGE value="Added &quot;remove from lists&quot; to Add and Alter Command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;remove from lists&quot; to Add and Alter Command" />
   </component>
 </project>
