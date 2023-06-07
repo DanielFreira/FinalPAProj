@@ -98,7 +98,7 @@ data class  CuteJasonBool(val value: Boolean) : CuteJasonVal() {
     }
 }
 //List type object for json struct
-data class CuteJasonList(val value: List<CuteJasonVal>) : CuteJasonVal() {
+data class CuteJasonList(val value: MutableList<CuteJasonVal>) : CuteJasonVal() {
     //Builds a string by calling each nested child generateJason method, then encapsulates all in square brackets
     override fun generateJson(): String {
         return value.joinToString(
