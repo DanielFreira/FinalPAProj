@@ -4,6 +4,8 @@ import cutejason.command.AddCommand
 import cutejason.command.AlterCommand
 import cutejason.command.Invoker
 import cutejason.command.RemoveCommand
+import cutejason.controller.Controller
+import cutejason.view.CuteJasonEditor
 import cutejason.visitor.SearchByKeyVisitor
 
 data class Enrolled(
@@ -113,5 +115,9 @@ fun main(args: Array<String>) {
     println(testJasonObj.generateJson())
 
 
+
+    val controller = Controller(invoker, testJasonObj)
+    val cuteJasonEditor = CuteJasonEditor(controller, testJasonObj)
+    cuteJasonEditor.open()
 
 }

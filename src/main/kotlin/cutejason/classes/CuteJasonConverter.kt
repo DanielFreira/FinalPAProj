@@ -13,8 +13,8 @@ object CuteJasonConverter {
             is Collection<*> -> CuteJasonList( this.map { it.toCuteJason() } )
             is Enum<*> -> CuteJasonStr(this.name)
             is Boolean -> CuteJasonBool(this)
-            is String -> CuteJasonStr(this)
             is Number -> CuteJasonNum(this)
+            is String -> CuteJasonStr(this)
             null -> CuteJasonNull
             else -> this.toCuteJasonObj()
 

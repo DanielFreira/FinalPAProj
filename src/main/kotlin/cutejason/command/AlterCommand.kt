@@ -16,6 +16,7 @@ class AlterCommand(private val cuteJasonObj: CuteJasonObj, private val propertyN
             cuteJasonObj.value[propertyName] = convertedNewPropertyValue
             used = true
         }
+        cuteJasonObj.updateObservers()
     }
 
     override fun undo() {
@@ -27,6 +28,7 @@ class AlterCommand(private val cuteJasonObj: CuteJasonObj, private val propertyN
             }
             used = false
         }
+        cuteJasonObj.updateObservers()
     }
 
 

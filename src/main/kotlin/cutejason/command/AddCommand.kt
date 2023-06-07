@@ -2,7 +2,7 @@ package cutejason.command
 
 import cutejason.classes.CuteJasonConverter.toCuteJason
 import cutejason.classes.CuteJasonObj
-import cutejason.classes.CuteJasonVal
+
 
 class AddCommand (private val cuteJasonObj: CuteJasonObj, private val propertyName: String, private val propertyValue: Any) : Command {
     private var used = false
@@ -12,6 +12,7 @@ class AddCommand (private val cuteJasonObj: CuteJasonObj, private val propertyNa
             cuteJasonObj.value[propertyName] = convertedPropertyValue
             used = true
         }
+        cuteJasonObj.updateObservers()
     }
 
     override fun undo() {
@@ -19,6 +20,7 @@ class AddCommand (private val cuteJasonObj: CuteJasonObj, private val propertyNa
             cuteJasonObj.value.remove(propertyName)
             used = false
         }
+        cuteJasonObj.updateObservers()
     }
 }
 

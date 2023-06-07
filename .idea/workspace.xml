@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Implemented Command design pattern">
+    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="MVC Arch implemented with Swing (Incomplete)">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/controller/Controller.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/view/CuteJasonEditor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AlterCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AlterCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/observer/Observer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/observer/Observer.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,9 +71,25 @@
       <recent name="D:\Projetos\Kotlin\FinalPAProj\src\main\kotlin\cutejason" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projetos\Kotlin\FinalPAProj\src\main\kotlin\cutejason\view" />
+      <recent name="D:\Projetos\Kotlin\FinalPAProj\src\main\kotlin\cutejason\visitor" />
       <recent name="D:\Projetos\Kotlin\FinalPAProj\src\main\kotlin" />
       <recent name="D:\Projetos\Kotlin\FinalPAProj\src\main\kotlin\cutejason\classes" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <module name="FinalPAProj" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -78,7 +101,8 @@
       <updated>1684311930701</updated>
       <workItem from="1684311932120" duration="27687000" />
       <workItem from="1685870686871" duration="15403000" />
-      <workItem from="1686063499995" duration="3277000" />
+      <workItem from="1686063499995" duration="10443000" />
+      <workItem from="1686122293565" duration="12191000" />
     </task>
     <task id="LOCAL-00001" summary="Basic class structure for json objects created">
       <created>1684314730688</created>
@@ -150,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685905903588</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Removed Bug on removing non existing properties">
+      <created>1686066928027</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686066928027</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,17 +223,8 @@
     <MESSAGE value="Transferred accept method for nested children to Obj class instead of visitor" />
     <MESSAGE value="Implemented Observer design pattern" />
     <MESSAGE value="Implemented Command design pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Command design pattern" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
-          <line>100</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Removed Bug on removing non existing properties" />
+    <MESSAGE value="MVC Arch implemented with Swing (Incomplete)" />
+    <option name="LAST_COMMIT_MESSAGE" value="MVC Arch implemented with Swing (Incomplete)" />
   </component>
 </project>

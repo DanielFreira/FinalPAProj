@@ -25,9 +25,8 @@ sealed class CuteJasonVal : Observable {
     }
     //Updates every observer in observers list
     override fun updateObservers() {
-        observers.forEach { it.update() }
+        observers.forEach { it.update(this) }
     }
-
 
 }
 
@@ -56,12 +55,17 @@ data class CuteJasonObj(val value: MutableMap<String, CuteJasonVal>) : CuteJason
 data class CuteJasonStr(val value: String) : CuteJasonVal() {
     //Returns value in quotation marks and as a string
     override fun generateJson(): String {
-        return "\"$value\""
+        return value
     }
 
     override fun accept(visitor: Visitor) {
         return visitor.visit(this)
     }
+
+    override fun toString(): String {
+        return value
+    }
+
 }
 //Numeric type object for json struct
 data class CuteJasonNum(val value: Number) : CuteJasonVal() {
@@ -73,6 +77,10 @@ data class CuteJasonNum(val value: Number) : CuteJasonVal() {
     override fun accept(visitor: Visitor) {
         return visitor.visit(this)
     }
+
+    override fun toString(): String {
+        return value.toString()
+    }
 }
 //Boolean type object for json struct
 data class  CuteJasonBool(val value: Boolean) : CuteJasonVal() {
@@ -83,6 +91,10 @@ data class  CuteJasonBool(val value: Boolean) : CuteJasonVal() {
 
     override fun accept(visitor: Visitor) {
         return visitor.visit(this)
+    }
+
+    override fun toString(): String {
+        return value.toString()
     }
 }
 //List type object for json struct
@@ -113,6 +125,10 @@ object CuteJasonNull : CuteJasonVal() {
 
     override fun accept(visitor: Visitor) {
         return visitor.visit(this)
+    }
+
+    override fun toString(): String {
+        return "null"
     }
 }
 

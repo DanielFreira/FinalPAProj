@@ -1,5 +1,5 @@
 package cutejason.observer
 
 interface Observer {
-    fun update()
+    fun update(observable: Observable)
 }

@@ -13,6 +13,8 @@ class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val property
             removedProperty = cuteJasonObj.value.remove(propertyName)
             used = true
         }
+
+        cuteJasonObj.updateObservers()
     }
 
     override fun undo() {
@@ -22,6 +24,8 @@ class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val property
             }
             used = false
         }
+
+        cuteJasonObj.updateObservers()
     }
 
 
