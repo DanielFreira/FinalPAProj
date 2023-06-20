@@ -6,8 +6,8 @@ import cutejason.command.*
 
 class Controller(private val invoker: Invoker, private val cuteJasonObj: CuteJasonObj) {
 
-    fun addProperty(propertyName: String, propertyValue: Any) {
-        val addCommand = AddCommand(cuteJasonObj, propertyName, propertyValue)
+    fun addProperty(propertyName: String) {
+        val addCommand = AddCommand(cuteJasonObj, propertyName)
         invoker.useCommand(addCommand)
     }
 
@@ -20,7 +20,7 @@ class Controller(private val invoker: Invoker, private val cuteJasonObj: CuteJas
 
     }
 
-    fun removeProperty(propertyName: String) {
+    fun removeProperty(propertyName: String, index: Int? = null) {
         val removeCommand = RemoveCommand(cuteJasonObj, propertyName)
         invoker.useCommand(removeCommand)
     }
@@ -29,5 +29,8 @@ class Controller(private val invoker: Invoker, private val cuteJasonObj: CuteJas
         invoker.undoCommand()
     }
 
+    fun canUndo():Boolean {
+        return invoker.canUndo()
+    }
 
 }

@@ -19,4 +19,8 @@ class Invoker {
         }
     }
 
+    fun canUndo():Boolean {
+        return usedCommands.isNotEmpty()
+    }
+
 }

@@ -55,7 +55,7 @@ data class CuteJasonObj(val value: MutableMap<String, CuteJasonVal>) : CuteJason
 data class CuteJasonStr(val value: String) : CuteJasonVal() {
     //Returns value in quotation marks and as a string
     override fun generateJson(): String {
-        return value
+        return "\"$value\""
     }
 
     override fun accept(visitor: Visitor) {

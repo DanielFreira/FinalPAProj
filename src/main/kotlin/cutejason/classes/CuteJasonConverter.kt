@@ -14,7 +14,14 @@ object CuteJasonConverter {
             is Enum<*> -> CuteJasonStr(this.name)
             is Boolean -> CuteJasonBool(this)
             is Number -> CuteJasonNum(this)
-            is String -> CuteJasonStr(this)
+            is String -> {
+                val convertedNumber = this.toDoubleOrNull()
+                if (convertedNumber != null) {
+                    CuteJasonNum(convertedNumber)
+                } else {
+                    CuteJasonStr(this)
+                }
+            }
             null -> CuteJasonNull
             else -> this.toCuteJasonObj()
 

@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Added &quot;remove from lists&quot; to Add and Alter Command">
+    <list default="true" id="f55ae1d6-de37-48f5-b34e-ef0f9cb3a813" name="Changes" comment="Implemented Observer design pattern">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/Invoker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/Invoker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/controller/Controller.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/controller/Controller.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/view/CuteJasonEditor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/view/CuteJasonEditor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +102,7 @@
       <workItem from="1685870686871" duration="15403000" />
       <workItem from="1686063499995" duration="10443000" />
       <workItem from="1686122293565" duration="19478000" />
+      <workItem from="1687264533381" duration="19000" />
     </task>
     <task id="LOCAL-00001" summary="Basic class structure for json objects created">
       <created>1684314730688</created>

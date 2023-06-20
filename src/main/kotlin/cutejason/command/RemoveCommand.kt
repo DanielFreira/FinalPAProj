@@ -21,6 +21,7 @@ class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val property
                 if(cuteJasonObj.value[propertyName] is CuteJasonList){
                     val tempCuteJasonList: CuteJasonList = cuteJasonObj.value[propertyName] as CuteJasonList
                     removedListProperty = tempCuteJasonList.value.removeAt(index)
+                    cuteJasonObj.value[propertyName] = tempCuteJasonList
                     used = true
                 }
             }

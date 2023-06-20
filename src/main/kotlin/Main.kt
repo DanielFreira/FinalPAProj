@@ -5,7 +5,6 @@ import cutejason.command.AlterCommand
 import cutejason.command.Invoker
 import cutejason.command.RemoveCommand
 import cutejason.controller.Controller
-import cutejason.view.CuteJasonEditor
 import cutejason.visitor.SearchByKeyVisitor
 
 data class Enrolled(
