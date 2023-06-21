@@ -1,27 +1,25 @@
 package cutejason.controller
 
+import cutejason.classes.CuteJasonList
 import cutejason.classes.CuteJasonObj
+import cutejason.classes.CuteJasonVal
 import cutejason.command.*
 
 
 class Controller(private val invoker: Invoker, private val cuteJasonObj: CuteJasonObj) {
 
-    fun addProperty(propertyName: String) {
-        val addCommand = AddCommand(cuteJasonObj, propertyName)
+    fun addProperty(parentProperty: CuteJasonVal, propertyName: String) {
+        val addCommand = AddCommand(cuteJasonObj, parentProperty, propertyName)
         invoker.useCommand(addCommand)
     }
 
-    fun alterProperty(propertyName: String, newPropertyValue: Any) {
-
-        if(cuteJasonObj.contains(propertyName)){
-            val alterCommand = AlterCommand(cuteJasonObj, propertyName, newPropertyValue)
-            invoker.useCommand(alterCommand)
-        }
-
+    fun alterProperty(property: CuteJasonVal, newPropertyValue: Any) {
+        val alterCommand = AlterCommand(cuteJasonObj, property, newPropertyValue)
+        invoker.useCommand(alterCommand)
     }
 
-    fun removeProperty(propertyName: String, index: Int? = null) {
-        val removeCommand = RemoveCommand(cuteJasonObj, propertyName)
+    fun removeProperty(property: CuteJasonVal) {
+        val removeCommand = RemoveCommand(cuteJasonObj, property)
         invoker.useCommand(removeCommand)
     }
 
@@ -32,5 +30,6 @@ class Controller(private val invoker: Invoker, private val cuteJasonObj: CuteJas
     fun canUndo():Boolean {
         return invoker.canUndo()
     }
+
 
 }

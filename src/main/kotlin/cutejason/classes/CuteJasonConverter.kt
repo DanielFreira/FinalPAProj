@@ -9,6 +9,7 @@ object CuteJasonConverter {
 
     fun Any?.toCuteJason(): CuteJasonVal = when (this){
 
+            null -> CuteJasonNull
             is Map<*,*> -> CuteJasonObj(this.mapKeys { it.key.toString() }.mapValues { it.value.toCuteJason() }.toMutableMap())
             is Collection<*> -> CuteJasonList( this.map { it.toCuteJason() }.toMutableList() )
             is Enum<*> -> CuteJasonStr(this.name)
@@ -22,7 +23,6 @@ object CuteJasonConverter {
                     CuteJasonStr(this)
                 }
             }
-            null -> CuteJasonNull
             else -> this.toCuteJasonObj()
 
     }

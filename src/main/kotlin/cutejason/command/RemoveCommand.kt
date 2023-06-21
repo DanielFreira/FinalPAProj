@@ -1,57 +1,52 @@
 package cutejason.command
 
-import cutejason.classes.CuteJasonList
-import cutejason.classes.CuteJasonObj
-import cutejason.classes.CuteJasonVal
+import cutejason.classes.*
 
-class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val propertyName: String, private val index: Int? = null) : Command{
+
+class RemoveCommand(private val cuteJasonObj: CuteJasonObj, private val property: CuteJasonVal) : Command{
 
     private var used = false
+    private var parent: CuteJasonVal? = null
+    private var path: String? = null
     private var removedProperty: CuteJasonVal? = null
-    private var removedListProperty: CuteJasonVal? = null
 
     override fun execute() {
-        if (!used){
+        if (!used) {
+            val parentWithPath = cuteJasonObj.findParentWithPath(property)
+            if (parentWithPath != null) {
+                val (parentObject, currentPath) = parentWithPath
+                parent = parentObject
+                path = currentPath
 
-            if(index == null){
-                removedProperty = cuteJasonObj.value.remove(propertyName)
+                if (parentObject is CuteJasonObj) {
+                    val propertyKey = currentPath.substringAfterLast('.')
+                    removedProperty = parentObject.value.remove(propertyKey)
+                } else if (parentObject is CuteJasonList) {
+                    val index = currentPath.substringAfterLast('[').substringBeforeLast(']').toInt()
+                    removedProperty = parentObject.value.removeAt(index)
+                }
+
                 used = true
             }
-            else{
-                if(cuteJasonObj.value[propertyName] is CuteJasonList){
-                    val tempCuteJasonList: CuteJasonList = cuteJasonObj.value[propertyName] as CuteJasonList
-                    removedListProperty = tempCuteJasonList.value.removeAt(index)
-                    cuteJasonObj.value[propertyName] = tempCuteJasonList
-                    used = true
-                }
-            }
-
         }
 
         cuteJasonObj.updateObservers()
     }
 
     override fun undo() {
-        if (used) {
-            if (removedProperty != null){
-
-                if(index == null){
-                    cuteJasonObj.value[propertyName] = removedProperty!!
-                }
-                else{
-                    if(cuteJasonObj.value[propertyName] is CuteJasonList){
-                        var tempCuteJasonList: CuteJasonList = cuteJasonObj.value[propertyName] as CuteJasonList
-                        tempCuteJasonList.value.add(index, removedListProperty!!)
-                        cuteJasonObj.value[propertyName] = tempCuteJasonList
-                    }
-                }
+        if (used && parent != null && path != null) {
+            if (parent is CuteJasonObj) {
+                val propertyKey = path!!.substringAfterLast('.')
+                (parent as CuteJasonObj).value[propertyKey] = removedProperty!!
+            } else if (parent is CuteJasonList) {
+                val index = path!!.substringAfterLast('[').substringBeforeLast(']').toInt()
+                (parent as CuteJasonList).value.add(index, removedProperty!!)
             }
+
             used = false
         }
 
         cuteJasonObj.updateObservers()
     }
-
-
 
 }

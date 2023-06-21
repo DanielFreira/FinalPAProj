@@ -1,277 +1,211 @@
-import cutejason.classes.CuteJasonList
-import cutejason.classes.CuteJasonObj
-import cutejason.classes.CuteJasonVal
+import cutejason.classes.*
 import cutejason.controller.Controller
-import cutejason.observer.Observable
-import cutejason.observer.Observer
-import java.awt.BorderLayout
-import java.awt.Component
-import java.awt.Dimension
-import java.awt.GridLayout
+import cutejason.observer.*
+import java.awt.*
 import java.awt.event.*
 import javax.swing.*
 
 class CuteJasonEditor(private val controller: Controller, private val cuteJasonObj: CuteJasonObj) : Observer {
 
-    private var srcArea = JTextArea()
-    private var undoButton = JButton("Undo")
+    private val srcArea = JTextArea()
+    private val undoButton = JButton("Undo")
+    private val frame = JFrame("CuteJasonObj Editor")
+    private val mainPanel = JPanel()
+    private val nestedPanel = JPanel()
 
     init {
         cuteJasonObj.addObserver(this)
         undoButton.isEnabled = false
         undoButton.addActionListener {
-
             controller.undo()
-            panel().apply {
-                revalidate()
-                repaint()
-            }
+            updateUI()
         }
+
+        configureFrame()
+        configureMenuBar()
+        configureLeftPanel()
+        configureRightPanel()
+
+        updateUI()
     }
 
-    val frame = JFrame("CuteJason Object Editor").apply {
-        defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        layout = BorderLayout()
-        size = Dimension(600, 600)
-
-        val menuBar = JMenuBar()
-        val mainMenu = JMenu("Options")
-        menuBar.add(mainMenu)
-        mainMenu.add(undoButton)
-
-        jMenuBar = menuBar
-
-        val mainPanel = JPanel()
-        mainPanel.layout = GridLayout(0, 2)
-
-        val left = JPanel()
-        left.layout = GridLayout()
-        val scrollPane = JScrollPane(panel()).apply {
-            horizontalScrollBarPolicy = JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
-            verticalScrollBarPolicy = JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
-        }
-        left.add(scrollPane)
-        mainPanel.add(left)
-
-        val right = JPanel()
-        right.layout = GridLayout()
-        srcArea.tabSize = 2
-        srcArea.text = formatJson(cuteJasonObj.generateJson())
-        right.add(srcArea)
-        mainPanel.add(right)
-
-        add(mainPanel, BorderLayout.CENTER)
-    }
-
-    fun open() {
+    fun open(){
         frame.isVisible = true
     }
 
-    fun JPanel.repopulate(){
-        this.apply {
-            removeAll()
-            cuteJasonObj.value.forEach {
-                add(widget(it.key,it.value))
+    private fun configureFrame() {
+        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+        frame.layout = BorderLayout()
+        frame.size = Dimension(600, 600)
+        frame.add(mainPanel, BorderLayout.CENTER)
+    }
+
+    private fun configureMenuBar() {
+        val menuBar = JMenuBar()
+
+        val undoToggle = JToggleButton("Undo")
+        undoToggle.addActionListener {
+            controller.undo()
+            updateUI()
+        }
+
+        val panel = JPanel()
+        panel.layout = FlowLayout(FlowLayout.LEFT)
+        panel.add(undoToggle)
+
+        menuBar.add(panel)
+
+        frame.jMenuBar = menuBar
+    }
+
+    private fun configureLeftPanel() {
+        mainPanel.apply {
+            layout = GridLayout()
+            val scrollPane = JScrollPane(nestedPanel).apply {
+                horizontalScrollBarPolicy = JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
+                verticalScrollBarPolicy = JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
             }
-            revalidate()
-            repaint()
+            add(scrollPane)
         }
     }
 
-    fun panel(): JPanel =
-        JPanel().apply {
-            layout = BoxLayout(this, BoxLayout.Y_AXIS)
-            alignmentX = Component.LEFT_ALIGNMENT
-            alignmentY = Component.TOP_ALIGNMENT
+    private fun configureRightPanel() {
+        val rightPanel = JPanel().apply {
+            layout = GridLayout()
+            srcArea.tabSize = 2
+            add(srcArea)
+        }
+        mainPanel.add(rightPanel)
+    }
 
+    private fun updateUI() {
+        nestedPanel.removeAll()
+        nestedPanel.repopulate()
+        nestedPanel.revalidate()
+        nestedPanel.repaint()
 
-            this.repopulate()
+        srcArea.text = cuteJasonObj.generateJsonWithIdents()
+        undoButton.isEnabled = controller.canUndo()
+    }
 
+    private fun JPanel.repopulate() {
+        layout = BoxLayout(this, BoxLayout.Y_AXIS) // Set vertical layout
 
-            addMouseListener(object : MouseAdapter() {
-                override fun mouseClicked(e: MouseEvent) {
-                    if (SwingUtilities.isRightMouseButton(e)) {
-                        val menu = JPopupMenu("Options")
+        cuteJasonObj.value.forEach { (key, value) ->
+            add(widget(key, value))
+        }
+    }
+    private fun widget(propertyName: String, cuteJasonVal: CuteJasonVal, parentPath: String = ""): JPanel {
+        val panel = JPanel().apply {
+            layout = BorderLayout()
+            border = BorderFactory.createLineBorder(Color.WHITE, 5)
+            background = Color.LIGHT_GRAY
 
-                        val add = JButton("add")
-                        add.addActionListener {
-                            val propertyName = JOptionPane.showInputDialog("Property name")
-                            controller.addProperty(propertyName)
-                            menu.isVisible = false
-                            removeAll()
-                            repopulate()
-                            revalidate()
-                            repaint()
-
-                        }
-
-                        val undo = JButton("Undo")
-                        undo.addActionListener {
-                            controller.undo()
-                            menu.isVisible = false
-
-                            JPanel().repopulate()
-                            revalidate()
-                            repaint()
-                        }
-
-
-                        menu.add(add)
-                        menu.add(undo)
-                        menu.show(this@apply, 100, 100)
-                    }
-                }
-            })
         }
 
+        val propertyNameLabel = JLabel("$propertyName ")
 
-    private fun widget(propertyName: String, cuteJasonVal: CuteJasonVal, index:Int? = null): JPanel =
-        JPanel().apply {
-            layout = BoxLayout(this, BoxLayout.X_AXIS)
-            alignmentX = Component.LEFT_ALIGNMENT
-            alignmentY = Component.TOP_ALIGNMENT
+        panel.add(propertyNameLabel, BorderLayout.WEST)
 
-            add(JLabel(propertyName))
+        val valuePanel = JPanel().apply {
+            layout = BoxLayout(this, BoxLayout.Y_AXIS)
+        }
 
-            when (cuteJasonVal) {
-                is CuteJasonObj -> {
-                    val nestedPanel = JPanel()
-                    nestedPanel.layout = BoxLayout(nestedPanel, BoxLayout.Y_AXIS)
-                    add(nestedPanel)
+        val popupMenu = JPopupMenu()
+        val removeMenuItem = JMenuItem("Remove")
+        removeMenuItem.addActionListener {
+            controller.removeProperty(cuteJasonVal)
+            updateUI()
+        }
+        popupMenu.add(removeMenuItem)
 
-                    cuteJasonVal.value.forEach {
-                        nestedPanel.add(widget(it.key, it.value))
-                    }
+        val addMenuItem = JMenuItem("Add")
+        addMenuItem.addActionListener {
+            controller.addProperty(cuteJasonVal, JOptionPane.showInputDialog("Property name"))
+            updateUI()
+        }
+        popupMenu.add(addMenuItem)
 
-                    val removeButton = JButton("Remove")
-                    removeButton.addActionListener {
-                        controller.removeProperty(propertyName)
-                        removeAll()
-                        JPanel().repopulate()
-                        revalidate()
-                        repaint()
-                    }
-                    add(removeButton)
-
-                }
-                is CuteJasonList -> {
-                    val nestedPanel = JPanel()
-                    nestedPanel.layout = BoxLayout(nestedPanel, BoxLayout.Y_AXIS)
-                    add(nestedPanel)
-
-                    cuteJasonVal.value.forEachIndexed { index, element ->
-                        nestedPanel.add(widget("  ", element,index))
-                    }
-
-                    val removeButton = JButton("Remove")
-                    removeButton.addActionListener {
-                        controller.removeProperty(propertyName, index)
-                        JPanel().repopulate()
-                    }
-                    add(removeButton)
-
-                    cuteJasonVal.addObserver(object : Observer {
-                        override fun update(observable: Observable) {
-                            SwingUtilities.invokeLater {
-                                removeAll()
-                                JPanel().repopulate()
-                                revalidate()
-                                repaint()
-                            }
-                        }
-                    })
-
-                }
-                else -> {
-                    val text = JTextField(cuteJasonVal.toString())
-                    text.addFocusListener(object : FocusAdapter() {
-                        override fun focusLost(e: FocusEvent) {
-                            val newValue = text.text
-                            controller.alterProperty(propertyName, newValue)
-                        }
-                    })
-                    add(text)
-
-                    val removeButton = JButton("Remove")
-                    removeButton.addActionListener {
-                        controller.removeProperty(propertyName)
-                        removeAll()
-                        JPanel().repopulate()
-                        revalidate()
-                        repaint()
-                    }
-                    add(removeButton)
+        panel.addMouseListener(object : MouseAdapter() {
+            override fun mouseClicked(e: MouseEvent) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    popupMenu.show(panel, e.x, e.y)
                 }
             }
+        })
 
-            cuteJasonVal.addObserver(object : Observer {
-                override fun update(observable: Observable) {
-                    SwingUtilities.invokeLater {
-                        revalidate()
-                        repaint()
+        when (cuteJasonVal) {
+            is CuteJasonObj -> {
+                cuteJasonVal.value.forEach { (key, value) ->
+                    valuePanel.add(widget(key, value))
+                }
+            }
+            is CuteJasonList -> {
+                cuteJasonVal.value.forEach {
+                    valuePanel.add(widget("    ", it))
+                }
+            }
+            is CuteJasonBool -> {
+                val checkBox = JCheckBox()
+                checkBox.isSelected = cuteJasonVal.value
+                checkBox.addItemListener { checkBox ->
+                    if (checkBox.stateChange == ItemEvent.SELECTED) {
+                        controller.alterProperty(cuteJasonVal, true)
+                    } else if (checkBox.stateChange == ItemEvent.DESELECTED) {
+                        controller.alterProperty(cuteJasonVal, false)
                     }
                 }
-            })
+                valuePanel.add(checkBox)
 
+                cuteJasonVal.addObserver(object : Observer {
+                    override fun update(observable: Observable) {
+                        SwingUtilities.invokeLater {
+                            checkBox.isSelected = cuteJasonVal.value
+                        }
+                    }
+                })
+            }
+            else -> {
+                val textPanel = JPanel().apply {
+                    layout = BorderLayout()
+                }
+
+                val text = JTextField(cuteJasonVal.toString())
+                text.addFocusListener(object : FocusAdapter() {
+                    override fun focusLost(e: FocusEvent) {
+                        if(cuteJasonVal.toString() != text.text){
+                            controller.alterProperty(cuteJasonVal, text.text)
+                        }
+
+                    }
+                })
+                textPanel.add(text, BorderLayout.CENTER)
+
+                valuePanel.add(textPanel)
+
+                cuteJasonVal.addObserver(object : Observer {
+                    override fun update(observable: Observable) {
+                        SwingUtilities.invokeLater {
+                            updateUI()
+                        }
+                    }
+                })
+            }
         }
+
+        panel.add(valuePanel, BorderLayout.CENTER)
+
+        return panel
+    }
 
 
     override fun update(observable: Observable) {
         println("update called, observable: $observable")
         if (observable == cuteJasonObj) {
             SwingUtilities.invokeLater {
-                this.srcArea.text = formatJson(cuteJasonObj.generateJson())
-                undoButton.isEnabled = controller.canUndo()
+                updateUI()
             }
         }
-    }
-
-
-    private fun formatJson(json: String): String {
-        val indentChar = "    "
-        val builder = StringBuilder()
-        var level = 0
-        var inQuote = false
-
-        for (char in json) {
-            when (char) {
-                '{', '[' -> {
-                    builder.append(char)
-                    builder.append('\n')
-                    level++
-                    for(l in 0..level){
-                        builder.append(indentChar)
-                    }
-
-                }
-                '}', ']' -> {
-                    builder.append('\n')
-                    level--
-                    for(l in 0..level){
-                        builder.append(indentChar)
-                    }
-                    builder.append(char)
-                }
-                ',' -> {
-                    builder.append(char)
-                    if (!inQuote) {
-                        builder.append('\n')
-                        for(l in 0..level){
-                            builder.append(indentChar)
-                        }
-                    }
-                }
-                '"' -> {
-                    builder.append(char)
-                    inQuote = !inQuote
-                }
-                else -> {
-                    builder.append(char)
-                }
-            }
-        }
-
-        return builder.toString()
     }
 
 }

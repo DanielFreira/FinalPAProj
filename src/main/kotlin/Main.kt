@@ -62,13 +62,6 @@ fun main(args: Array<String>) {
         ))
     ))
 
-    //println(testJasonObj.generateJson())
-
-    val searchByKeyVisitor = SearchByKeyVisitor("numero")
-    testJasonObj.accept(searchByKeyVisitor)
-
-    //println(searchByKeyVisitor.getValues())
-
     val myCourse = Course(
         "PA",
         6.0,
@@ -82,42 +75,14 @@ fun main(args: Array<String>) {
 
 
 
-    val myCuteJasonObj = myCourse.toCuteJason()
-
-    //myCuteJasonObj.toCuteJason()
-    //println(myCuteJasonObj.generateJson())
-
-
-    val addCommand = AddCommand(testJasonObj, "test","testValue")
-    val removeCommand = RemoveCommand(testJasonObj, "numero")
-    val changeCommand = AlterCommand(testJasonObj, "ects",7.0)
-
     val invoker = Invoker()
-
-    invoker.useCommand(addCommand)
-
-    println(testJasonObj.generateJson())
-
-    invoker.undoCommand()
-
-    invoker.useCommand(removeCommand)
-
-    println(testJasonObj.generateJson())
-
-    invoker.undoCommand()
-
-    invoker.useCommand(changeCommand)
-
-    println(testJasonObj.generateJson())
-
-    invoker.undoCommand()
-
-    println(testJasonObj.generateJson())
-
-
 
     val controller = Controller(invoker, testJasonObj)
     val cuteJasonEditor = CuteJasonEditor(controller, testJasonObj)
+
     cuteJasonEditor.open()
+
+
+
 
 }

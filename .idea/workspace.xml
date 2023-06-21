@@ -10,10 +10,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonClasses.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/classes/CuteJasonConverter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AddCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/Invoker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/Invoker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AlterCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/AlterCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/command/RemoveCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/controller/Controller.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/controller/Controller.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cutejason/view/CuteJasonEditor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cutejason/view/CuteJasonEditor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/CuteJasonTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/CuteJasonTests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

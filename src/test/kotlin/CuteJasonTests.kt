@@ -29,20 +29,22 @@ class CuteJasonTests {
 
     @Test
     fun testCuteJasonListGenerateJson(){
-        val cuteJasonList = CuteJasonList(listOf(
-            CuteJasonObj(mapOf(
+        val cuteJasonList = CuteJasonList(mutableListOf(
+            CuteJasonObj(mutableMapOf(
                 "keyString1" to CuteJasonStr("value"),
                 "keyNumeric1" to CuteJasonNum(123456.0),
                 "keyBoolean1" to CuteJasonBool(true),
                 "keyNull1" to CuteJasonNull
-            )),
-            CuteJasonObj(mapOf(
+            )
+            ),
+            CuteJasonObj(mutableMapOf(
                 "keyString2" to CuteJasonStr("value2"),
                 "keyNumeric2" to CuteJasonNum(654321.0),
                 "keyBoolean2" to CuteJasonBool(false),
                 "keyNull2" to CuteJasonNull
             ))
-        ))
+        )
+        )
 
         assertEquals("[{\"keyString1\" : \"value\"," +
                 "\"keyNumeric1\" : 123456.0," +
@@ -56,7 +58,7 @@ class CuteJasonTests {
 
     @Test
     fun testCuteJasonObjGenerateJson(){
-        val cuteJasonObj = CuteJasonObj(mapOf(
+        val cuteJasonObj = CuteJasonObj(mutableMapOf(
             "keyString" to CuteJasonStr("value"),
             "keyNumeric" to CuteJasonNum(123456.0),
             "keyBoolean" to CuteJasonBool(true),

@@ -43,11 +43,87 @@ data class CuteJasonObj(val value: MutableMap<String, CuteJasonVal>) : CuteJason
         )
     }
 
+    fun generateJsonWithIdents(): String {
+        val indentChar = "    "
+        val builder = StringBuilder()
+        var level = 0
+        var inQuote = false
+        val json = generateJson()
+
+        for (char in json) {
+            when (char) {
+                '{', '[' -> {
+                    builder.append(char)
+                    builder.append('\n')
+                    level++
+                    for(l in 0..level){
+                        builder.append(indentChar)
+                    }
+
+                }
+                '}', ']' -> {
+                    builder.append('\n')
+                    level--
+                    for(l in 0..level){
+                        builder.append(indentChar)
+                    }
+                    builder.append(char)
+                }
+                ',' -> {
+                    builder.append(char)
+                    if (!inQuote) {
+                        builder.append('\n')
+                        for(l in 0..level){
+                            builder.append(indentChar)
+                        }
+                    }
+                }
+                '"' -> {
+                    builder.append(char)
+                    inQuote = !inQuote
+                }
+                else -> {
+                    builder.append(char)
+                }
+            }
+        }
+
+        return builder.toString()
+    }
+
     //Accepts visitor obj
     override fun accept(visitor: Visitor) {
         if (visitor.visit(this)){
             value.values.forEach{it.accept(visitor)}
         }
+    }
+
+    //Find path to nestedItem
+    fun findParentWithPath(property: CuteJasonVal, path: String = ""): Pair<CuteJasonVal?, String>? {
+        for ((key, value) in this.value) {
+            val currentPath = if (path.isEmpty()) key else "$path.$key"
+            if (value == property) {
+                return Pair(this, currentPath)
+            } else if (value is CuteJasonObj) {
+                val parentWithPath = value.findParentWithPath(property, currentPath)
+                if (parentWithPath != null) {
+                    return parentWithPath
+                }
+            } else if (value is CuteJasonList) {
+                for ((index, nestedValue) in value.value.withIndex()) {
+                    val nestedPath = "$currentPath[$index]"
+                    if (nestedValue == property) {
+                        return Pair(value, nestedPath)
+                    } else if (nestedValue is CuteJasonObj) {
+                        val parentWithPath = nestedValue.findParentWithPath(property, nestedPath)
+                        if (parentWithPath != null) {
+                            return parentWithPath
+                        }
+                    }
+                }
+            }
+        }
+        return null
     }
 
 }
